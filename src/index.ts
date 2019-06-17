@@ -13,7 +13,7 @@ namespace TeaSchool{
         puppeteerOptions?: LaunchOptions;
     }
 
-    export const generatePdf = async (options: GeneratePdfOptions): Promise<Buffer> => {
+    export const generatePdf = async (options: GeneratePdfOptions, useSetContent?: boolean): Promise<Buffer> => {
         const browser = await puppeteer.launch(options.puppeteerOptions);
         const page = await browser.newPage();
         let htmlTemplateOptions: pug.Options & pug.LocalsObject = {...options.htmlTemplateOptions};
@@ -38,8 +38,13 @@ namespace TeaSchool{
         }
 
         // Make puppeteer render the HTML from data buffer
-        await page.goto(`data:text/html,${renderedTemplate}`,
+        if (useSetContent) {
+            await page.setContent(renderedTemplate)
+        } else {
+            await page.goto(`data:text/html,${renderedTemplate}`,
             {waitUntil: ['load', 'domcontentloaded', 'networkidle0']} as NavigationOptions);
+        }
+        
 
         const pdfBuffer = await page.pdf({...options.pdfOptions});
 
