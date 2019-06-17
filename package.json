@@ -6,11 +6,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
+    "prepare": "npm run build",
     "test": "npx ts-mocha ./src/tests/**.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AmirTugi/tea-school.git"
+    "url": "git+https://github.com/@betaquick/tea-school.git"
   },
   "keywords": [
     "PDF",
@@ -18,12 +19,12 @@
     "nodejs",
     "pdf-generator"
   ],
-  "author": "Amir Tugendhaft",
+  "author": "BetaQuick LLC",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AmirTugi/tea-school/issues"
+    "url": "https://github.com/@betaquick/tea-school/issues"
   },
-  "homepage": "https://github.com/AmirTugi/tea-school#readme",
+  "homepage": "https://github.com/@betaquick/tea-school#readme",
   "devDependencies": {
     "@types/chai": "^4.1.6",
     "@types/mocha": "^5.2.5",
